@@ -26,9 +26,9 @@
 
   - name: Get Tag Objects
     panos_object_facts:
-            provider: '{{ provider }}'
-            object_type: 'tag'
-            name_regex: '.*'
+      provider: '{{ provider }}'
+      object_type: 'tag'
+      name_regex: '.*'
     register: tags
 
   - name: Print out results
