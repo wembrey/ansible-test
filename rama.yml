@@ -11,7 +11,7 @@
   tasks:
   - name: get credentials
     include_vars: 'pano_provider.yml'
-    no_log: 'yes'
+    no_log: 'no'
 
   - name: Check Panorama is Ready for Config
     panos_check:
