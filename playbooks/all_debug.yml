@@ -4,6 +4,5 @@
   connection: local
   gather_facts: no
   tasks:
-          - debug:
-                  var: hostvars
-
+  - debug:
+    var: hostvars

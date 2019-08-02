@@ -21,8 +21,8 @@
       interval: 5
       timeout: 60
       register: result
-  debug:
-    var: result
+    debug:
+      var: result
 
   - name: Get Tag Objects
     panos_object_facts:
@@ -33,4 +33,4 @@
 
   - name: Print out results
     debug:
-            var: tags
+      var: tags

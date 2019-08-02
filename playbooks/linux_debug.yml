@@ -2,6 +2,5 @@
 - name: Debug all Vars
   hosts: ubuntu
   tasks:
-          - debug:
-                  var: hostvars
-
+  - debug:
+    var: hostvars

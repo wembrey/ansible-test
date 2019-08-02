@@ -1,7 +1,0 @@
-name: Network Playbook
-  hosts: paloalto
-    connection: local
-      gather_facts: false
-
-        roles:
-                    - role: PaloAltoNetworks.paloaltonetworks

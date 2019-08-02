@@ -2,9 +2,9 @@
   hosts: panorama
   connection: local
   gather_facts: False
-
+  
   roles:
-          - role: PaloAltoNetworks.paloaltonetworks
+  - role: PaloAltoNetworks.paloaltonetworks
 
   tasks:
   - name: get credentials
@@ -13,7 +13,11 @@
 
   - name: 'Check admin'
     panos_administrator:
-            provider: '{{ provider }}'
-            admin_username: 'wembrey'
-            state: present
-            commit: False
+      provider: '{{ provider }}'
+      admin_username: 'wembrey'
+      state: present
+      commit: False
+
+  - name: Print out results
+    debug:
+      var: tags
