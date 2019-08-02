@@ -20,6 +20,8 @@
       interval: 5
       timeout: 60
     register: result
+
+  - name: Print check results
     debug:
       var: result
 
@@ -30,6 +32,6 @@
       name_regex: '.*'
     register: tags
 
-  - name: Print out results
+  - name: Print tag results
     debug:
       var: tags
