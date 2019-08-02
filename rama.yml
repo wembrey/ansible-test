@@ -15,7 +15,7 @@
     no_log: 'yes'
 
   - name: Check Panorama is Ready for Config
-      panos_check:
+    panos_check:
       provider: '{{ provider }}'
       initial_delay: 5
       interval: 5
