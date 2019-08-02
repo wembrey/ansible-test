@@ -1,0 +1,62 @@
+# headline for the playbook
+- name: admin check
+  hosts: panorama
+  connection: local
+  gather_facts: False
+
+  roles:
+    - role: PaloAltoNetworks.paloaltonetworks
+
+  vars:
+    ip_to_register: "10.10.10.10"
+    tag_names: ["wp-test-app"]
+    dag_name: "wp-test-dag"
+    dag_match_filter: "'wp-test-app'"
+    devicegroup: "wp-test-dg"
+
+# Declare the tasks to run in the playbook
+  tasks:
+  - name: get credentials
+    include_vars: 'pano_provider.yml'
+    no_log: 'no'
+
+  - name: Check Panorama is Ready for Config
+    panos_check:
+      provider: '{{ provider }}'
+      initial_delay: 5
+      interval: 5
+      timeout: 60
+    register: result
+
+  - name: Print check results
+    debug:
+      var: result
+
+  - name: Get Tag Objects
+    panos_object_facts:
+      provider: '{{ provider }}'
+      object_type: 'tag'
+      name_regex: '.*'
+    register: tags
+
+  - name: Print tag results
+    debug:
+      var: tags
+
+  - name: Create the tags to map IP addresses
+    panos_dag_tags:
+      provider: '{{ provider }}'
+      ip_to_register: "{{ ip_to_register }}"
+      tag_names: "{{ tag_names }}"
+      devicegroup: "{{ wp-test-dg}}"
+      description: "Tags to allow certain IP's to access various SaaS Applications"
+      operation: 'add'
+
+  - name: Create dynamic address groups on PAN FW
+    panos_dag:
+      provider: '{{ provider }}'
+      dag_name: "{{ dag_name }}"
+      devicegroup: "{{ wp-test-dg}}"
+      dag_match_filter: "{{ dag_match_filter }}"
+      description: 'Add / create dynamic address group to allow access to SaaS Applications'
+      operation: 'add'
