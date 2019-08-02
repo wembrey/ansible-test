@@ -32,7 +32,7 @@
     debug:
       var: result
 
-  - name: add SSH inbound rule to Panorama device group
+  - name: add test-app inbound rule to Panorama device group
     panos_security_rule:
       provider: '{{ provider }}'
       device_group: "{{ devicegroup }}"
