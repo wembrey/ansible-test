@@ -9,7 +9,6 @@
 
 # Declare the tasks to run in the playbook
   tasks:
-
   - name: get credentials
     include_vars: 'pano_provider.yml'
     no_log: 'yes'
@@ -20,7 +19,7 @@
       initial_delay: 5
       interval: 5
       timeout: 60
-      register: result
+    register: result
     debug:
       var: result
 
