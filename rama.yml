@@ -1,26 +1,28 @@
+# headline for the playbook
 - name: admin check
   hosts: panorama
   connection: local
   gather_facts: False
 
   roles:
-          - role: PaloAltoNetworks.paloaltonetworks
+    - role: PaloAltoNetworks.paloaltonetworks
 
+# Declare the tasks to run in the playbook
   tasks:
-  - name: Check Panorama is Ready for Config
-      panos_check:
-                        provider: '{{ provider }}'
-                                  initial_delay: 5
-                                            interval: 5
-                                                      timeout: 60
-                                                        register: result
-                                                          debug:
-                                                                            var: result
-
 
   - name: get credentials
     include_vars: 'pano_provider.yml'
     no_log: 'yes'
+
+  - name: Check Panorama is Ready for Config
+      panos_check:
+      provider: '{{ provider }}'
+      initial_delay: 5
+      interval: 5
+      timeout: 60
+      register: result
+  debug:
+    var: result
 
   - name: Get Tag Objects
     panos_object_facts:
