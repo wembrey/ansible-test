@@ -1,0 +1,23 @@
+- name: admin check
+  hosts: panorama
+  connection: local
+  gather_facts: False
+
+  roles:
+          - role: PaloAltoNetworks.paloaltonetworks
+
+  tasks:
+  - name: get credentials
+    include_vars: 'pano_provider.yml'
+    no_log: 'yes'
+
+  - name: Get Tag Objects
+    panos_object_facts:
+            provider: '{{ provider }}'
+            object_type: 'tag'
+            name_regex: '.*'
+    register: tags
+
+  - name: Print out results
+    debug:
+            var: tags

@@ -1,0 +1,19 @@
+- name: admin check
+  hosts: panorama
+  connection: local
+  gather_facts: False
+
+  roles:
+          - role: PaloAltoNetworks.paloaltonetworks
+
+  tasks:
+  - name: get credentials
+    include_vars: 'pano_provider.yml'
+    no_log: 'yes'
+
+  - name: 'Check admin'
+    panos_administrator:
+            provider: '{{ provider }}'
+            admin_username: 'wembrey'
+            state: present
+            commit: False
