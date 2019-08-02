@@ -32,45 +32,6 @@
     debug:
       var: result
 
-  - name: Get Tag Objects
-    panos_object_facts:
-      provider: '{{ provider }}'
-      object_type: 'tag'
-      name_regex: '.*'
-    register: tags
-
-  - name: Print tag results
-    debug:
-      var: tags
-
-  - name: Create the tags to map IP addresses
-    panos_dag_tags:
-      provider: '{{ provider }}'
-      ip_to_register: "{{ ip_to_register }}"
-      tag_names: "{{ tag_names }}"
-      devicegroup: "{{ devicegroup }}"
-      description: "Tags to allow certain IP's to access various SaaS Applications"
-      operation: 'add'
-    register: dagtags
-
-  - name: Print dag tag results
-    debug:
-      var: dagtags
-
-  - name: Create dynamic address groups on PAN FW
-    panos_dag:
-      provider: '{{ provider }}'
-      dag_name: "{{ dag_name }}"
-      devicegroup: "{{ devicegroup }}"
-      dag_match_filter: "{{ dag_match_filter }}"
-      description: 'Add / create dynamic address group to allow access to SaaS Applications'
-      operation: 'add'
-    register: dag
-
-  - name: Print dag results
-    debug:
-      var: dag
-
   - name: add SSH inbound rule to Panorama device group
     panos_security_rule:
       provider: '{{ provider }}'
