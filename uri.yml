@@ -22,4 +22,4 @@
 
   - name: Show content with debug
     debug:
-      var: yes.content
+      var: result.content
