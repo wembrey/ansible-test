@@ -19,3 +19,7 @@
   - name: Show output with debug
     debug:
       var: result
+
+  - name: Show content with debug
+    debug:
+      var: yes.content
