@@ -1,4 +1,5 @@
 # Test file for URI module and conditionals
+
 - name: admin check
   hosts: local
   connection: local
