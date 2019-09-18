@@ -35,7 +35,7 @@
       var: facts
       msg: "The IP address is {{ provider.ip_address}}"
 
-  - local_action: Copy the output to file
-    module: copy
+  - name: Copy using inline content
+    copy:
       content: "test data"
       dest: "firewall_facts/{{ansible_date_time.date}}_{{provider.ip_address}}.log"
