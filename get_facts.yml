@@ -13,7 +13,7 @@
     include_vars: 'fw_provider.yml'
     no_log: 'no'
     debug:
-      msg:="{{ provider:ip_address}}"
+      msg:="{{ provider.ip_address}}"
 
   - name: Check Firewall is Ready for Config
     panos_check:
@@ -39,4 +39,4 @@
   - local_action: Copy the output to file
     module: copy
       content={{ facts.stdout }}
-      dest=/firewall_facts/{{ansible_date_time.date}}_{{provider:ip_address}}.log
+      dest=/firewall_facts/{{ansible_date_time.date}}_{{provider.ip_address}}.log
