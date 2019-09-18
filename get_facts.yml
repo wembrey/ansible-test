@@ -10,7 +10,7 @@
 # Declare the tasks to run in the playbook
   tasks:
   - name: get credentials
-    include_vars: 'pano_provider.yml'
+    include_vars: 'fw_provider.yml'
     no_log: 'no'
 
   - name: Check Panorama is Ready for Config
