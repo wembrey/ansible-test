@@ -41,4 +41,4 @@
   - name: Copy using inline content
     copy:
       content: "{{ facts }}"
-      dest: "firewall_facts/{{ansible_date_time.date}}_{{provider.ip_address}}.log"
+      dest: "firewall_facts/{{ lookup('pipe','date +%Y-%m-%d-%H-%M-%S') }}_{{provider.ip_address}}.log"
