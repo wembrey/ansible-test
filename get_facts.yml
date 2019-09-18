@@ -13,7 +13,7 @@
     include_vars: 'fw_provider.yml'
     no_log: 'no'
     debug:
-      msg:="{{ provider.ip_address}}"
+      msg: "The IP address is {{ provider.ip_address}}"
 
   - name: Check Firewall is Ready for Config
     panos_check:
