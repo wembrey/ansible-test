@@ -37,5 +37,5 @@
 
   - local_action: Copy the output to file
     module: copy
-      content={{ facts.stdout }}
-      dest=/firewall_facts/{{ansible_date_time.date}}_{{provider.ip_address}}.log
+      content: {{ facts.stdout }}
+      dest: "firewall_facts/{{ansible_date_time.date}}_{{provider.ip_address}}.log"
