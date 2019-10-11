@@ -17,13 +17,8 @@
       user:
         name: "{{ username }}{{ item }}"
         state: absent
+        remove: yes
+        force: yes
       become: yes
       with_sequence:
          - count=8
-
-    - name: remove home directories
-      file:
-        path: "/home/{{username}}{{item}}"
-        state: absent
-      with_sequence:
-        - count=8
