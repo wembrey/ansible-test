@@ -13,7 +13,7 @@
 
 # Declare the tasks to run in the playbook
   tasks:
-    - name: add several users
+    - name: Remove users "igxuser1" to "igxuser8"
       user:
         name: "{{ username }}{{ item }}"
         state: absent
