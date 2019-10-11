@@ -1,44 +1,20 @@
 # headline for the playbook
-- name: admin check
-  hosts: panorama
+- name: Create lab user accounts
+  hosts: local
   connection: local
-  gather_facts: False
+  gather_facts: True
 
-  roles:
-    - role: PaloAltoNetworks.paloaltonetworks
+# declare the variables to use
+vars:
+  username: "igxuser"
+  password: "IGXuser"
 
 # Declare the tasks to run in the playbook
   tasks:
-  - name: get credentials
-    include_vars: 'fw_provider.yml'
-    no_log: 'no'
-
-  - name: Print crednetials results
-    debug:
-      msg: "The IP address is {{ provider.ip_address }}"
-
-  - name: Check Firewall is Ready for Config
-    panos_check:
-      provider: '{{ provider }}'
-      initial_delay: 5
-      interval: 5
-      timeout: 60
-    register: result
-
-  - name: Print check results
-    debug:
-      var: result
-
-  - name: Get Firewall Facts and save to file
-    panos_facts:
-      provider: '{{ provider }}'
-    register: facts
-
-  - name: Print facts
-    debug:
-      var: facts
-
-  - name: Copy using inline content
-    copy:
-      content: "{{ facts }}"
-      dest: "firewall_facts/{{ lookup('pipe','date +%Y-%m-%d-%H-%M-%S') }}_{{provider.ip_address}}.log"
+    - name: add several users
+      user:
+        name: "{{ username }}{{ item }}"
+        password: "{{ password }}{{ item }}"
+        state: present
+      with_sequence:
+         - count=8
