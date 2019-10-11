@@ -5,9 +5,9 @@
   gather_facts: True
 
 # declare the variables to use
-vars:
-  username: "igxuser"
-  password: "IGXuser"
+  vars:
+    username: "igxuser"
+    password: "IGXuser"
 
 # Declare the tasks to run in the playbook
   tasks:
