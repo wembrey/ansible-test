@@ -17,6 +17,7 @@
       user:
         name: "{{ username }}{{ item }}"
         state: absent
+      become: yes
       with_sequence:
          - count=8
 

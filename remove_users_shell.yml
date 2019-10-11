@@ -15,6 +15,7 @@
   tasks:
     - name: Remove users "igxuser1" to "igxuser8"
       shell: "userdel {{ username }}{{ item }}"
+      become: yes
       with_sequence:
          - count=8
 
