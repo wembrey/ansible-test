@@ -1,20 +1,28 @@
 # headline for the playbook
-- name: Create lab user accounts
+- name: Remove lab user accounts
   hosts: local
+  sudo: yes
+  sudo_user: wembrey
   connection: local
   gather_facts: True
 
 # declare the variables to use
   vars:
     username: "igxuser"
-    password: "IGXuser"
+
 
 # Declare the tasks to run in the playbook
   tasks:
     - name: add several users
       user:
         name: "{{ username }}{{ item }}"
-        password: "{{ password | password_hash('sha512', 'igxworkshopsalt') }}"
-        state: present
+        state: absent
       with_sequence:
          - count=8
+
+    - name: remove home directories
+      file:
+        path: "/home/{{username}}{{item}}"
+        state: absent
+      with_sequence:
+        - count=8
