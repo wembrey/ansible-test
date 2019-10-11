@@ -1,8 +1,6 @@
 # headline for the playbook
 - name: Remove lab user accounts
   hosts: local
-  sudo: yes
-  sudo_user: wembrey
   connection: local
   gather_facts: True
 
