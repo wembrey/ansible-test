@@ -1,0 +1,9 @@
+- name: Run Py script
+     command: <>.py  > <>.log
+     become: yes
+     register: PyScript
+     ignore_errors: True
+
+   - name: PyScript on success
+     command: rm <>.log
+     when: PyScript|succeeded
