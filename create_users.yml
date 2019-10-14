@@ -14,7 +14,7 @@
     - name: add several users
       user:
         name: "{{ username }}{{ item }}"
-        password: "{{ password | password_hash('sha512', 'igxworkshopsalt') }}"
+        password: "{{ (password + item) | password_hash('sha512', 'igxworkshopsalt') }}"
         shell: "/bin/bash"
         state: present
       with_sequence:
