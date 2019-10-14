@@ -15,6 +15,7 @@
       user:
         name: "{{ username }}{{ item }}"
         password: "{{ password | password_hash('sha512', 'igxworkshopsalt') }}"
+        shell: "/bin/bash"
         state: present
       with_sequence:
          - count=8
