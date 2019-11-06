@@ -18,4 +18,4 @@
         shell: "/bin/bash"
         state: present
       with_sequence:
-         - count=8
+         - count=10
