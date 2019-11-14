@@ -1,0 +1,19 @@
+# headline for the playbook
+- name: data check
+  hosts: local
+  connection: local
+  gather_facts: False
+
+# Declare the tasks to run in the playbook
+  tasks:
+  - name: get data
+    include_vars: 'data.yml'
+    no_log: 'no'
+
+  - name: Print check results
+    debug:
+      var: ansible_net_interfaces
+
+  - name: Print crednetials results
+    debug:
+      var: ansible_net_interfaces.GigabitEthernet0/1
