@@ -7,3 +7,5 @@ ansible_net_interfaces:
     mtu: 1500
   GigabitEthernet0/3:
     mtu: 1500
+  GigabitEthernet04:
+      mtu: 1500
