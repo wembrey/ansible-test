@@ -16,7 +16,7 @@
 
   - name: Print Gig3
     debug:
-      var: "ansible_net_interfaces.GigabitEthernet0/3"
+      var: ansible_net_interfaces['GigabitEthernet0/3']
 
   - name: Print Gig4
     debug:
