@@ -1,6 +1,6 @@
 # headline for the playbook
 - name: admin check
-  hosts: panorama
+  hosts: local
   connection: local
   gather_facts: False
 
@@ -10,7 +10,7 @@
 # Declare the tasks to run in the playbook
   tasks:
   - name: get credentials
-    include_vars: 'fw_provider.yml'
+    include_vars: 'credentials.yml'
     no_log: 'no'
 
   - name: Print crednetials results

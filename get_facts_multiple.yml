@@ -1,6 +1,6 @@
 # headline for the playbook
 - name: admin check
-  hosts: panorama
+  hosts: local
   connection: local
   gather_facts: False
 
