@@ -11,8 +11,8 @@
      failed_when: my_name is undefined
 
 # Declare the tasks to run in the playbook
-
-  - name: Print multiple device credentials
-    debug:
-      msg: "The IP address is {{ item }}"
-    with_items: "{{ credentials_list.yml }}"
+  tasks:
+    - name: Print multiple device credentials
+      debug:
+        msg: "The IP address is {{ item }}"
+      with_items: "{{ credentials_list.yml }}"
