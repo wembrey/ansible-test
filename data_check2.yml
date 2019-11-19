@@ -4,12 +4,6 @@
   connection: local
   gather_facts: False
 
-  vars_prompt:
-   - name: my_name
-     prompt: "Please provide your name"
-     private: no
-     failed_when: my_name is undefined
-
 # Declare the tasks to run in the playbook
 
   tasks:
