@@ -1,0 +1,18 @@
+# headline for the playbook
+- name: date check
+  hosts: local
+  connection: local
+  gather_facts: False
+
+  vars_prompt:
+   - name: my_name
+     prompt: "Please provide your name"
+     private: no
+     failed_when: my_name is undefined
+
+# Declare the tasks to run in the playbook
+
+  - name: Print multiple device credentials
+    debug:
+      msg: "The IP address is {{ item }}"
+    with_items: "{{ credentials_list.yml }}"
