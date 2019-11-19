@@ -13,5 +13,5 @@
 
     - name: Print multiple device credentials
       debug:
-        msg: "The IP address is {{ item.ip_address }}"
+        msg: "The IP address is {{ item.fw_creds.ip_address }}"
       with_items: "{{ credentials }}"
