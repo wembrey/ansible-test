@@ -11,8 +11,13 @@
      failed_when: my_name is undefined
 
 # Declare the tasks to run in the playbook
+
   tasks:
+    - name: get credentials
+      include_vars: 'credentials_list.yml'
+      no_log: 'no'
+
     - name: Print multiple device credentials
       debug:
         msg: "The IP address is {{ item }}"
-      with_items: "{{ credentials_list.yml }}"
+      with_items: "{{ credentials }}"
