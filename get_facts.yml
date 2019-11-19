@@ -15,11 +15,11 @@
 
   - name: Print crednetials results
     debug:
-      msg: "The IP address is {{ provider.ip_address }}"
+      msg: "The IP address is {{ fw_creds.ip_address }}"
 
   - name: Check Firewall is Ready for Config
     panos_check:
-      provider: '{{ provider }}'
+      provider: '{{ fw_creds }}'
       initial_delay: 5
       interval: 5
       timeout: 60
@@ -31,7 +31,7 @@
 
   - name: Get Firewall Facts and save to file
     panos_facts:
-      provider: '{{ provider }}'
+      provider: '{{ fw_creds }}'
     register: facts
 
   - name: Print facts
